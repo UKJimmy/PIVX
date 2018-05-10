@@ -148,7 +148,7 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "Don't work for weekends, work for our goals.";
+        const char* pszTimestamp = "Trump Ruins Iran Deal";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -161,11 +161,44 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1525926062;
         genesis.nBits = 504365040;
-        genesis.nNonce = 354608;
+        genesis.nNonce = 31335629;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000f7acb7316483ab4330ab208994d6d5122f68d64b3aba4571ca21b5d8c36"));
-        assert(genesis.hashMerkleRoot == uint256("f5239467dd2a9dd0fce7a3babc03c7985eab2229c62e3d5670375f305753c9cc"));
+	printf("genesis.hashMerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
+	printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+	assert(hashGenesisBlock == uint256("0x0af7067769643f92c87698bd66f1021ea26ff4f337c4ab65d2cb197e1f22a768"));
+       // assert(hashGenesisBlock == uint256("0x0000054e0f51243e534b71f727401a103988a4c08ba0e443f534658df71f54c8"));
+        assert(genesis.hashMerkleRoot == uint256("0x43f02a6c79114555b999485f3e9a444badd1559c50df5b89ab3044e7f9437217"));
+/*
+       if(genesis.GetHash() != hashGenesisBlock)
+       {
+          printf("Searching for genesis block...\n");
+          uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+          uint256 thash;
+while (true)
+{
+    thash = genesis.GetHash();
+    if (thash <= hashTarget)
+        break;
+    if ((genesis.nNonce & 0xFFF) == 0)
+    {
+        printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, thash.ToString().c_str(), hashTarget.ToString().c_str());
+    }
+    ++genesis.nNonce;
+    if (genesis.nNonce == 0)
+    {
+        printf("NONCE WRAPPED, incrementing time\n");
+        ++genesis.nTime;
+    }
+}
+printf("genesis.nTime = %u \n", genesis.nTime);
+printf("genesis.nNonce = %u \n", genesis.nNonce);
+printf("genesis.nVersion = %u \n", genesis.nVersion);
+printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+printf("genesis.hashMerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
+	   }
+
+*/
 
         vSeeds.push_back(CDNSSeedData("127.0.0.1", "127.0.0.1"));     // Primary DNS Seeder from Fuzzbawls
 
@@ -259,11 +292,10 @@ public:
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1454124731;
-        genesis.nNonce = 2402015;
-
+        genesis.nTime = 1525926062;
+        genesis.nNonce = 31335629;
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"));
+        assert(hashGenesisBlock == uint256("0x0af7067769643f92c87698bd66f1021ea26ff4f337c4ab65d2cb197e1f22a768"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -329,13 +361,13 @@ public:
         nTargetTimespan = 24 * 60 * 60; // PIVX: 1 day
         nTargetSpacing = 1 * 60;        // PIVX: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1454124731;
-        genesis.nBits = 0x207fffff;
-        genesis.nNonce = 12345;
+        genesis.nTime = 1525926062;
+        genesis.nBits = 504365040;
+        genesis.nNonce = 31335629;
 
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 51476;
-        assert(hashGenesisBlock == uint256("0x4f023a2120d9127b21bbad01724fdb79b519f593f2a85b60d3d79160ec5f29df"));
+        assert(hashGenesisBlock == uint256("0x0af7067769643f92c87698bd66f1021ea26ff4f337c4ab65d2cb197e1f22a768"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
